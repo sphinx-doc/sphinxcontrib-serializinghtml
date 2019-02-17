@@ -163,7 +163,7 @@ class JSONHTMLBuilder(SerializingHTMLBuilder):
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
-    app.setup_extension('html')
+    app.setup_extension('sphinx.builders.html')
     app.add_builder(JSONHTMLBuilder)
     app.add_builder(PickleHTMLBuilder)
     app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
