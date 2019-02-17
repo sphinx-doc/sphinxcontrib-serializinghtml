@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 long_desc = '''
 sphinxcontrib-serializinghtml is a sphinx extension which outputs
-"serialized" HTML files (ex. pickle).
+"serialized" HTML files (json and pickle).
 '''
 
 extras_require = {

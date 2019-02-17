@@ -16,6 +16,7 @@ from sphinx.builders.html import BuildInfo, StandaloneHTMLBuilder
 from sphinx.locale import get_translation
 from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
 
+from sphinxcontrib.serializinghtml import jsonimpl
 from sphinxcontrib.serializinghtml.version import __version__
 
 if False:
@@ -145,8 +146,25 @@ class PickleHTMLBuilder(SerializingHTMLBuilder):
     searchindex_filename = 'searchindex.pickle'
 
 
+class JSONHTMLBuilder(SerializingHTMLBuilder):
+    """
+    A builder that dumps the generated HTML into JSON files.
+    """
+    name = 'json'
+    epilog = __('You can now process the JSON files in %(outdir)s.')
+
+    implementation = jsonimpl
+    implementation_dumps_unicode = True
+    indexer_format = jsonimpl
+    indexer_dumps_unicode = True
+    out_suffix = '.fjson'
+    globalcontext_filename = 'globalcontext.json'
+    searchindex_filename = 'searchindex.json'
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension('html')
+    app.add_builder(JSONHTMLBuilder)
     app.add_builder(PickleHTMLBuilder)
     app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
 

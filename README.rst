@@ -3,7 +3,7 @@ sphinxcontrib-serializinghtml
 =============================
 
 sphinxcontrib-serializinghtml is a sphinx extension which outputs
-"serialized" HTML files (ex. pickle).
+"serialized" HTML files (json and pickle).
 
 For more details, please visit http://www.sphinx-doc.org/.
 
