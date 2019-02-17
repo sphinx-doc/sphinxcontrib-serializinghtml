@@ -1,3 +1,8 @@
+Release 1.1.0 (2019-02-17)
+==========================
+
+* Add ``JSONHTMLBuilder`` and ``PickleHTMLBuilder`` (copied from sphinx package)
+
 Release 1.0.0 (2019-02-17)
 ==========================
 
