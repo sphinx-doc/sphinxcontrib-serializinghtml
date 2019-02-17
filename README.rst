@@ -2,9 +2,8 @@
 sphinxcontrib-serializinghtml
 =============================
 
-sphinxcontrib-serializinghtml is a sphinx extension which provides
-``SerializingHTMLBuilder`` class as a base class of serializing
-HTML builders.
+sphinxcontrib-serializinghtml is a sphinx extension which outputs
+"serialized" HTML files (ex. pickle).
 
 For more details, please visit http://www.sphinx-doc.org/.
 

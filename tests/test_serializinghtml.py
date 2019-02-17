@@ -8,6 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
+import pytest
 
-def test_basic():
-    pass  # nothing to do
+
+@pytest.mark.sphinx('pickle', testroot='basic')
+def test_basic(app, status, warning):
+    app.builder.build_all()

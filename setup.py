@@ -3,9 +3,8 @@ import os
 from setuptools import setup, find_packages
 
 long_desc = '''
-sphinxcontrib-serializinghtml is a sphinx extension which provides
-``SerializingHTMLBuilder`` class as a base class of serializing
-HTML builders.
+sphinxcontrib-serializinghtml is a sphinx extension which outputs
+"serialized" HTML files (ex. pickle).
 '''
 
 extras_require = {

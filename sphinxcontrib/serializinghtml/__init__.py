@@ -6,16 +6,25 @@
     :license: BSD, see LICENSE for details.
 """
 
+import pickle
 import types
 from os import path
+from typing import Any, Dict
 
-from sphinx.application import ENV_PICKLE_FILENAME
+from sphinx.application import ENV_PICKLE_FILENAME, Sphinx
 from sphinx.builders.html import BuildInfo, StandaloneHTMLBuilder
+from sphinx.locale import get_translation
 from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
+
+from sphinxcontrib.serializinghtml.version import __version__
 
 if False:
     # For type annotation
     from typing import Any, Dict, Tuple  # NOQA
+
+package_dir = path.abspath(path.dirname(__file__))
+
+__ = get_translation(__name__, 'console')
 
 
 #: the filename for the "last build" file (for serializing builders)
@@ -117,3 +126,32 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
         # touch 'last build' file, used by the web application to determine
         # when to reload its environment and clear the cache
         open(path.join(self.outdir, LAST_BUILD_FILENAME), 'w').close()
+
+
+class PickleHTMLBuilder(SerializingHTMLBuilder):
+    """
+    A Builder that dumps the generated HTML into pickle files.
+    """
+    name = 'pickle'
+    epilog = __('You can now process the pickle files in %(outdir)s.')
+
+    implementation = pickle
+    implementation_dumps_unicode = False
+    additional_dump_args = (pickle.HIGHEST_PROTOCOL,)
+    indexer_format = pickle
+    indexer_dumps_unicode = False
+    out_suffix = '.fpickle'
+    globalcontext_filename = 'globalcontext.pickle'
+    searchindex_filename = 'searchindex.pickle'
+
+
+def setup(app: Sphinx) -> Dict[str, Any]:
+    app.setup_extension('html')
+    app.add_builder(PickleHTMLBuilder)
+    app.add_message_catalog(__name__, path.join(package_dir, 'locales'))
+
+    return {
+        'version': __version__,
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }
