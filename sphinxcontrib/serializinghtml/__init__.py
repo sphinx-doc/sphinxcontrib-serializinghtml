@@ -13,6 +13,7 @@ from typing import Any, Dict
 
 from sphinx.application import ENV_PICKLE_FILENAME, Sphinx
 from sphinx.builders.html import BuildInfo, StandaloneHTMLBuilder
+from sphinx.deprecation import RemovedInSphinx40Warning, deprecated_alias
 from sphinx.locale import get_translation
 from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
 
@@ -160,6 +161,17 @@ class JSONHTMLBuilder(SerializingHTMLBuilder):
     out_suffix = '.fjson'
     globalcontext_filename = 'globalcontext.json'
     searchindex_filename = 'searchindex.json'
+
+
+deprecated_alias('sphinx.builders.html',
+                 {
+                     'LAST_BUILD_FILENAME': LAST_BUILD_FILENAME,
+                     'JSONHTMLBuilder': JSONHTMLBuilder,
+                     'PickleHTMLBuilder': PickleHTMLBuilder,
+                     'SerializingHTMLBuilder': SerializingHTMLBuilder,
+                     'WebHTMLBuilder': PickleHTMLBuilder,
+                 },
+                 RemovedInSphinx40Warning)
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
