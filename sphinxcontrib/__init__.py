@@ -9,4 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-__import__('pkg_resources').declare_namespace(__name__)
+import pkg_resources
+
+
+pkg_resources.declare_namespace(__name__)
