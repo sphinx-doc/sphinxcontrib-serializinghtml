@@ -10,8 +10,11 @@ sphinxcontrib-serializinghtml is a sphinx extension which outputs
 extras_require = {
     'test': [
         'pytest',
+    ],
+    'lint': [
         'flake8',
         'mypy',
+        'docutils-stubs',
     ],
 }
 
