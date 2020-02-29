@@ -39,7 +39,7 @@ setup(
     license='BSD',
     author='Georg Brandl',
     author_email='georg@python.org',
-    description=long_desc,
+    description=long_desc.strip().replace('\n', ' '),
     long_description=long_desc,
     zip_safe=False,
     classifiers=[
