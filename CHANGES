@@ -1,3 +1,8 @@
+Release 1.1.5 (2021-05-23)
+==========================
+
+* Remove deprecation warnings for Sphinx-3.x
+
 Release 1.1.4 (2020-02-29)
 ==========================
 
