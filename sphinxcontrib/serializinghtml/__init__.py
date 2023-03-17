@@ -17,11 +17,13 @@ from sphinx.locale import get_translation
 from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
 
 from sphinxcontrib.serializinghtml import jsonimpl
-from sphinxcontrib.serializinghtml.version import __version__
 
 if False:
     # For type annotation
     from typing import Any, Dict, Tuple  # NOQA
+
+__version__ = '1.1.6'
+__version_info__ = (1, 1, 6)
 
 package_dir = path.abspath(path.dirname(__file__))
 
