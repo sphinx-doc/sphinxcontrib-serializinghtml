@@ -74,3 +74,6 @@ include = [
 exclude = [
     "doc/_build",
 ]
+
+[tool.mypy]
+ignore_missing_imports = true
