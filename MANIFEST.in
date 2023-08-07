@@ -1,8 +1,0 @@
-include README.rst
-include LICENSE
-include CHANGES
-
-include tox.ini
-
-recursive-include sphinxcontrib/serializinghtml/locales *
-recursive-include tests *

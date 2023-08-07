@@ -1,6 +1,8 @@
 Release 1.1.6 (unreleased)
 ==========================
 
+* Drop support for Python 3.5, 3.6, 3.7, and 3.8
+* Raise minimum required Sphinx version to 5.0
 
 Release 1.1.5 (2021-05-23)
 ==========================
