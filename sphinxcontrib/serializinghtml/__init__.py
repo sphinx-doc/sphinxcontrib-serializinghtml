@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import os
 import pickle
 import types
 from os import path
@@ -42,10 +43,10 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
     implementation: Any = None
     implementation_dumps_unicode = False
     #: additional arguments for dump()
-    additional_dump_args = ()
+    additional_dump_args: tuple = ()
 
     #: the filename for the global context file
-    globalcontext_filename: str | None = None
+    globalcontext_filename: str = ''
 
     supported_image_types = ['image/svg+xml', 'image/png',
                              'image/gif', 'image/jpeg']
@@ -69,7 +70,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
             return docname[:-5]  # up to sep
         return docname + SEP
 
-    def dump_context(self, context: dict, filename: str) -> None:
+    def dump_context(self, context: dict, filename: str | os.PathLike[str]) -> None:
         if self.implementation_dumps_unicode:
             with open(filename, 'w', encoding='utf-8') as ft:
                 self.implementation.dump(context, ft, *self.additional_dump_args)
@@ -109,7 +110,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
 
     def handle_finish(self) -> None:
         # dump the global context
-        outfilename = path.join(self.outdir, self.globalcontext_filename)
+        outfilename = self.outdir / self.globalcontext_filename
         self.dump_context(self.globalcontext, outfilename)
 
         # super here to dump the search index
