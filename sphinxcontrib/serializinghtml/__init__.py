@@ -86,6 +86,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
                     outfilename=None, event_arg=None):
         # type: (str, Dict, str, str, Any) -> None
         ctx['current_page_name'] = pagename
+        ctx.setdefault('pathto', lambda p: p)
         self.add_sidebars(pagename, ctx)
 
         if not outfilename:
