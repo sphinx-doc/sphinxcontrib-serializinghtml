@@ -6,10 +6,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import annotations
+
 import pickle
 import types
 from os import path
-from typing import Any, Dict
+from typing import Any
 
 from sphinx.application import ENV_PICKLE_FILENAME, Sphinx
 from sphinx.builders.html import BuildInfo, StandaloneHTMLBuilder
@@ -17,10 +19,6 @@ from sphinx.locale import get_translation
 from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
 
 from sphinxcontrib.serializinghtml import jsonimpl
-
-if False:
-    # For type annotation
-    from typing import Any, Dict, Tuple  # NOQA
 
 __version__ = '1.1.6'
 __version_info__ = (1, 1, 6)
@@ -41,19 +39,18 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
     #: the serializing implementation to use.  Set this to a module that
     #: implements a `dump`, `load`, `dumps` and `loads` functions
     #: (pickle, simplejson etc.)
-    implementation = None  # type: Any
+    implementation: Any = None
     implementation_dumps_unicode = False
     #: additional arguments for dump()
-    additional_dump_args = ()  # type: Tuple
+    additional_dump_args = ()
 
     #: the filename for the global context file
-    globalcontext_filename = None  # type: str
+    globalcontext_filename: str | None = None
 
     supported_image_types = ['image/svg+xml', 'image/png',
                              'image/gif', 'image/jpeg']
 
-    def init(self):
-        # type: () -> None
+    def init(self) -> None:
         self.build_info = BuildInfo(self.config, self.tags)
         self.imagedir = '_images'
         self.current_docname = ''
@@ -65,16 +62,14 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
         self.init_js_files()
         self.use_index = self.get_builder_config('use_index', 'html')
 
-    def get_target_uri(self, docname, typ=None):
-        # type: (str, str | None) -> str
+    def get_target_uri(self, docname: str, typ: str | None = None) -> str:
         if docname == 'index':
             return ''
         if docname.endswith(SEP + 'index'):
             return docname[:-5]  # up to sep
         return docname + SEP
 
-    def dump_context(self, context, filename):
-        # type: (Dict, str) -> None
+    def dump_context(self, context: dict, filename: str) -> None:
         if self.implementation_dumps_unicode:
             with open(filename, 'w', encoding='utf-8') as ft:
                 self.implementation.dump(context, ft, *self.additional_dump_args)
@@ -82,9 +77,8 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
             with open(filename, 'wb') as fb:
                 self.implementation.dump(context, fb, *self.additional_dump_args)
 
-    def handle_page(self, pagename, ctx, templatename='page.html',
-                    outfilename=None, event_arg=None):
-        # type: (str, Dict, str, str | None, Any) -> None
+    def handle_page(self, pagename: str, ctx: dict, templatename: str = 'page.html',
+                    outfilename: str | None = None, event_arg: Any = None) -> None:
         ctx['current_page_name'] = pagename
         ctx.setdefault('pathto', lambda p: p)
         self.add_sidebars(pagename, ctx)
@@ -113,8 +107,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
             ensuredir(path.dirname(source_name))
             copyfile(self.env.doc2path(pagename), source_name)
 
-    def handle_finish(self):
-        # type: () -> None
+    def handle_finish(self) -> None:
         # dump the global context
         outfilename = path.join(self.outdir, self.globalcontext_filename)
         self.dump_context(self.globalcontext, outfilename)
@@ -165,7 +158,7 @@ class JSONHTMLBuilder(SerializingHTMLBuilder):
     searchindex_filename = 'searchindex.json'
 
 
-def setup(app: Sphinx) -> Dict[str, Any]:
+def setup(app: Sphinx) -> dict[str, Any]:
     app.setup_extension('sphinx.builders.html')
     app.add_builder(JSONHTMLBuilder)
     app.add_builder(PickleHTMLBuilder)
