@@ -1,11 +1,3 @@
-"""
-    sphinxcontrib.serializinghtml
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    :copyright: Copyright 2007-2019 by the Sphinx team, see README.
-    :license: BSD, see LICENSE for details.
-"""
-
 from __future__ import annotations
 
 import os

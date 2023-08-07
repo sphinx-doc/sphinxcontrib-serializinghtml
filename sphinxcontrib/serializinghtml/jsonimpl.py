@@ -1,12 +1,4 @@
-"""
-    sphinx.util.jsonimpl
-    ~~~~~~~~~~~~~~~~~~~~
-
-    JSON serializer implementation wrapper.
-
-    :copyright: Copyright 2007-2019 by the Sphinx team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
-"""
+"""JSON serializer implementation wrapper."""
 
 from __future__ import annotations
 
