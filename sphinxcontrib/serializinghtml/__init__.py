@@ -56,9 +56,9 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
         # type: () -> None
         self.build_info = BuildInfo(self.config, self.tags)
         self.imagedir = '_images'
-        self.current_docname = None
-        self.theme = None       # no theme necessary
-        self.templates = None   # no template bridge necessary
+        self.current_docname = ''
+        self.theme = None  # type: ignore[assignment] # no theme necessary
+        self.templates = None  # no template bridge necessary
         self.init_templates()
         self.init_highlighter()
         self.init_css_files()
@@ -66,7 +66,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
         self.use_index = self.get_builder_config('use_index', 'html')
 
     def get_target_uri(self, docname, typ=None):
-        # type: (str, str) -> str
+        # type: (str, str | None) -> str
         if docname == 'index':
             return ''
         if docname.endswith(SEP + 'index'):
@@ -84,7 +84,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
 
     def handle_page(self, pagename, ctx, templatename='page.html',
                     outfilename=None, event_arg=None):
-        # type: (str, Dict, str, str, Any) -> None
+        # type: (str, Dict, str, str | None, Any) -> None
         ctx['current_page_name'] = pagename
         ctx.setdefault('pathto', lambda p: p)
         self.add_sidebars(pagename, ctx)
