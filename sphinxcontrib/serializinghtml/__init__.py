@@ -102,7 +102,7 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
 
     def handle_finish(self) -> None:
         # dump the global context
-        outfilename = self.outdir / self.globalcontext_filename
+        outfilename = path.join(self.outdir, self.globalcontext_filename)
         self.dump_context(self.globalcontext, outfilename)
 
         # super here to dump the search index
