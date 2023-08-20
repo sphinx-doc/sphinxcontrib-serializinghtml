@@ -40,9 +40,6 @@ classifiers = [
     "Topic :: Text Processing",
     "Topic :: Utilities",
 ]
-dependencies = [
-    "Sphinx>=5",
-]
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -53,6 +50,9 @@ lint = [
     "flake8",
     "mypy",
     "docutils-stubs",
+]
+standalone = [
+  "sphinx > 5",
 ]
 
 [[project.authors]]
