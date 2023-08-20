@@ -1,3 +1,9 @@
+Release 1.1.9 (2023-08-20)
+==========================
+
+* Serialise context["script_files"] and context["css_files"] as their filenames
+  on Sphinx 7.2.0.
+
 Release 1.1.8 (2023-08-14)
 ==========================
 
