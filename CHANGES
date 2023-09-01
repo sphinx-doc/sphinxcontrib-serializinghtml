@@ -1,3 +1,8 @@
+Release 1.1.10 (Pending)
+==========================
+
+* Fix circular dependency with Sphinx that caused failure in DAG-based package management
+
 Release 1.1.9 (2023-08-20)
 ==========================
 
