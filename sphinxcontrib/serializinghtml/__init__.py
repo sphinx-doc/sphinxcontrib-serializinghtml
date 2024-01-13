@@ -157,6 +157,7 @@ class JSONHTMLBuilder(SerializingHTMLBuilder):
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
+    app.require_sphinx('5.0')
     app.setup_extension('sphinx.builders.html')
     app.add_builder(JSONHTMLBuilder)
     app.add_builder(PickleHTMLBuilder)
