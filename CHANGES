@@ -1,5 +1,5 @@
-Release 1.1.10 (Pending)
-==========================
+Release 1.1.10 (unreleased)
+===========================
 
 * Fix circular dependency with Sphinx that caused failure in DAG-based package management
 
