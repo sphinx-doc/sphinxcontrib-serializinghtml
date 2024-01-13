@@ -1,7 +1,9 @@
 Release 1.1.10 (unreleased)
 ===========================
 
-* Fix circular dependency with Sphinx that caused failure in DAG-based package management
+* Remove Sphinx as a required dependency, as circular dependencies may cause
+  failure with package managers that expect a directed acyclic graph (DAG)
+  of dependencies.
 
 Release 1.1.9 (2023-08-20)
 ==========================
