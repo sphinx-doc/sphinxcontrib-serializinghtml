@@ -13,8 +13,8 @@ from sphinx.util.osutil import SEP, copyfile, ensuredir, os_path
 
 from sphinxcontrib.serializinghtml import jsonimpl
 
-__version__ = '1.1.9'
-__version_info__ = (1, 1, 9)
+__version__ = '1.1.10'
+__version_info__ = (1, 1, 10)
 
 package_dir = path.abspath(path.dirname(__file__))
 

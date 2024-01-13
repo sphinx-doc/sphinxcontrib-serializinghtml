@@ -1,4 +1,4 @@
-Release 1.1.10 (unreleased)
+Release 1.1.10 (2024-01-13)
 ===========================
 
 * Remove Sphinx as a required dependency, as circular dependencies may cause
