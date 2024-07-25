@@ -45,13 +45,24 @@ class SerializingHTMLBuilder(StandaloneHTMLBuilder):
 
     def init(self) -> None:
         self.build_info = BuildInfo(self.config, self.tags)
+        # Cope with whether or not Sphinx has the required configuration variables
+        # set.
         # See HTML Builder comments for explanation of image setup & handling
-        html_image_dir = self.get_builder_config('image_dir', 'html')
+        html_image_dir = None
+        try:
+            html_image_dir = self.get_builder_config('image_dir', 'html')
+        except AttributeError:
+            pass
         if html_image_dir is not None:
             self.imagedir = html_image_dir
         else:
             self.imagedir = '_images'
-        self.imagepath = self.get_builder_config('image_path', 'html')
+        html_image_path = None
+        try:
+            html_image_path = self.get_builder_config('image_path', 'html')
+        except AttributeError:
+            pass
+        self.imagepath = html_image_path
         self.current_docname = ''
         self.theme = None  # type: ignore[assignment] # no theme necessary
         self.templates = None  # no template bridge necessary
