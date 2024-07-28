@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from collections import UserString
-from typing import Any, IO
+from typing import IO, Any
 
 
 class SphinxJSONEncoder(json.JSONEncoder):
@@ -15,9 +15,9 @@ class SphinxJSONEncoder(json.JSONEncoder):
         return super().default(obj)
 
 
-def dump(obj: Any, fp: IO, *args: Any, **kwds: Any) -> None:
+def dump(obj: Any, file: IO[str] | IO[bytes], *args: Any, **kwds: Any) -> None:
     kwds['cls'] = SphinxJSONEncoder
-    json.dump(obj, fp, *args, **kwds)
+    json.dump(obj, file, *args, **kwds)
 
 
 def dumps(obj: Any, *args: Any, **kwds: Any) -> str:
